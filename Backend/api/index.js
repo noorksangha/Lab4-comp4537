@@ -26,7 +26,7 @@ module.exports = (req, res) => {
   // Rest of your logic...
 
   // Logic remains mostly unchanged
-  if (req.method === 'POST' && parsedUrl.pathname === '/api/definitions') {
+  if (req.method === 'POST' && parsedUrl.pathname === '/api/index.js/definitions') {
     let body = '';
     req.on('data', chunk => {
       body += chunk.toString();
@@ -43,7 +43,7 @@ module.exports = (req, res) => {
         res.end(JSON.stringify({ message: `New entry recorded: "${entry.word} : ${entry.definition}"`, requestCount, totalEntries: dictionary.length }));
       }
     });
-  } else if (req.method === 'GET' && parsedUrl.pathname === '/api/definitions/') {
+  } else if (req.method === 'GET' && parsedUrl.pathname === '/api/index.js/definitions/') {
     const definition = dictionary.find(item => item.word === word);
     if (definition) {
       res.writeHead(200, { 'Content-Type': 'application/json' });
