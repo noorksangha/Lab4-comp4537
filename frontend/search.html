@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Definition</title>
+</head>
+<body>
+    <h2>Search for a Definition</h2>
+    <div>
+        <label for="searchWord">Word:</label>
+        <input type="text" id="searchWord" name="searchWord" required>
+        <button onclick="searchDefinition()">Search</button>
+    </div>
+    <div id="result">
+        <!-- Search results will be displayed here -->
+    </div>
+
+    <script>
+        function searchDefinition() {
+          const word = document.getElementById('searchWord').value;
+          
+          if (!word) {
+            alert('Word is required for search!');
+            return;
+          }
+        
+          fetch(`https://yourDomainName2.wyz/api/definitions/?word=${word}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Word not found');
+            }
+            return response.json();
+          })
+          .then(data => {
+            document.getElementById('result').innerText = `${data.word}: ${data.definition}`;
+          })
+          .catch((error) => {
+            document.getElementById('result').innerText = error.toString();
+          });
+        }
+        </script>
+        
+</body>
+</html>
