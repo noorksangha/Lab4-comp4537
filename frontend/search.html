@@ -24,7 +24,7 @@
             return;
           }
         
-          fetch(`https://yourDomainName2.wyz/api/definitions/?word=${word}`)
+          fetch(`https://lab4-comp4537-genf.vercel.app/api/definitions/?word=${word}`)
           .then(response => {
             if (!response.ok) {
               throw new Error('Word not found');
