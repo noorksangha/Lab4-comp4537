@@ -10,16 +10,21 @@ module.exports = (req, res) => {
   requestCount++;
 
   // Set CORS headers
+module.exports = (req, res) => {
+  // Set CORS headers for all responses
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
-  // Preflight request handling for CORS
   if (req.method === 'OPTIONS') {
+    // Handle OPTIONS request for CORS preflight
     res.writeHead(200);
     res.end();
     return;
   }
+
+  // Rest of your logic...
+
   // Logic remains mostly unchanged
   if (req.method === 'POST' && parsedUrl.pathname === '/api/definitions') {
     let body = '';
